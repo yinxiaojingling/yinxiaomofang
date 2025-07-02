@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "DN6QO7pFLlo=",
+  "success": true,
+  "projectFilePath": "E:\\git\\llsmat\\yinxiao\\src\\YinXiao\\YinXiao\\YinXiao.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Mayn\\.nuget\\packages\\communitytoolkit.mvvm\\8.4.0\\communitytoolkit.mvvm.8.4.0.nupkg.sha512",
+    "C:\\Users\\Mayn\\.nuget\\packages\\handycontrol\\3.5.1\\handycontrol.3.5.1.nupkg.sha512",
+    "C:\\Users\\Mayn\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.12\\microsoft.netcore.app.runtime.win-x64.8.0.12.nupkg.sha512",
+    "C:\\Users\\Mayn\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.12\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.12.nupkg.sha512",
+    "C:\\Users\\Mayn\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.12\\microsoft.aspnetcore.app.runtime.win-x64.8.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,396 @@
+﻿<Page x:Class="YinXiao.Page.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:YinXiao.Page"
+      mc:Ignorable="d" 
+      d:DesignHeight="861" d:DesignWidth="1023">
+    <Page.Resources>
+        <Style x:Key="NoDefaultStyleRadioButton" TargetType="RadioButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Border" x:Key="btn1">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <!-- 保持默认样式，不做更改 -->
+                    <Setter Property="Background" Value="Transparent"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button" x:Key="btn">
+            <Style.Setters>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Name="border" BorderThickness="0"
+                        Padding="4,2"
+                        BorderBrush="DarkGray"
+                        CornerRadius="3"
+                        Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}" x:Key="cmbstyle">
+            <Setter Property="Background" Value="#F97316"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <!--ComBoxItem-->
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="MinHeight" Value="22"/>
+                        <Setter Property="MinWidth" Value="60"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ComboBoxItem">
+                                    <Border Name="Back" Background="Transparent" BorderBrush="#81D779">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Back" Property="Background" Value="#59FFFFFF"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                        <Trigger Property="IsHighlighted" Value="True">
+                                            <Setter TargetName="Back" Property="Background" Value="#59FFFFFF"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+                        <Border BorderThickness="2" CornerRadius="3" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" x:Name="grid">
+                                    <ToggleButton 
+                        Width="{Binding ElementName=grid,Path=ActualWidth}" 
+                        Height="{Binding ElementName=grid, Path=ActualHeight}" 
+                        Content="{TemplateBinding Text}" VerticalAlignment="Center" 
+                        HorizontalAlignment="Center" Margin="5,0,0,0" 
+                        BorderThickness="0" 
+                        Foreground="{TemplateBinding Foreground}"
+                        Background="{TemplateBinding Background}"
+                       IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press"
+                        >
+                                        <ToggleButton.Style>
+                                            <Style TargetType="ToggleButton">
+                                                <Setter Property="Background" Value="White"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="ToggleButton">
+                                                            <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                                                                <TextBlock Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Content}" Margin="4 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="White"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsMouseOver" Value="False">
+                                                        <Setter Property="Background" Value="White"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ToggleButton.Style>
+                                    </ToggleButton>
+                                </Grid>
+
+                                <Grid Grid.Column="1">
+                                    <ToggleButton IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                              Foreground="White"
+                              ClickMode="Press">
+                                        <ToggleButton.Style>
+                                            <Style TargetType="ToggleButton">
+                                                <Setter Property="Background" Value="#F97316"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="ToggleButton">
+                                                            <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                                <Grid>
+                                                                    <TextBlock Foreground="#59FFFFFF" x:Name="arrow_tb" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                                                                        <Image Source="/Resources/icon/icon5.png" Width="15" Height="8" Margin="0,0,12,0"></Image>
+                                                                        <TextBlock.RenderTransform>
+                                                                            <TransformGroup>
+                                                                                <ScaleTransform/>
+                                                                                <SkewTransform/>
+                                                                                <RotateTransform/>
+                                                                                <TranslateTransform/>
+                                                                            </TransformGroup>
+                                                                        </TextBlock.RenderTransform>
+                                                                    </TextBlock>
+                                                                </Grid>
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsChecked" Value="True">
+                                                                </Trigger>
+                                                                <EventTrigger RoutedEvent="Checked">
+                                                                    <BeginStoryboard>
+                                                                        <Storyboard>
+                                                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="arrow_tb" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                                                                                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                                                                                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="180"/>
+                                                                            </DoubleAnimationUsingKeyFrames>
+                                                                        </Storyboard>
+                                                                    </BeginStoryboard>
+                                                                </EventTrigger>
+
+                                                                <EventTrigger RoutedEvent="Unchecked">
+                                                                    <BeginStoryboard>
+                                                                        <Storyboard>
+                                                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="arrow_tb" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                                                                                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="180"/>
+                                                                                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
+                                                                            </DoubleAnimationUsingKeyFrames>
+                                                                        </Storyboard>
+                                                                    </BeginStoryboard>
+                                                                </EventTrigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ToggleButton.Style>
+                                    </ToggleButton>
+                                </Grid>
+                                <Popup IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" x:Name="Popup" Focusable="False" AllowsTransparency="True" PopupAnimation="Fade">
+                                    <Border CornerRadius="5"  MaxHeight="{TemplateBinding MaxHeight}" Width="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"  x:Name="DropDown" SnapsToDevicePixels="True">
+                                        <Border.Effect>
+                                            <DropShadowEffect Color="Black" BlurRadius="2" ShadowDepth="0" Opacity="0.5"/>
+                                        </Border.Effect>
+                                        <ScrollViewer  Style="{DynamicResource ScrollViewerStyle}" MaxHeight="{TemplateBinding MaxDropDownHeight}" SnapsToDevicePixels="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+                                            <!-- StackPanel 用于显示子级，方法是将 IsItemsHost 设置为 True -->
+                                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" Background="#2E3C5D"/>
+                                        </ScrollViewer>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="-1" Opacity="0.3" Color="#FF969696" BlurRadius="5"/>
+                            </Border.Effect>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Page.DataContext>
+        <local:HomePageViewModel/>
+    </Page.DataContext>
+    <hc:TransitioningContentControl>
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/Resources/Images/bg.png"></ImageBrush>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.07*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="0.07*" ></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.299*"></RowDefinition>
+                    <RowDefinition Height="0.058*"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="0.306*"></RowDefinition>
+                    <RowDefinition Height="27"></RowDefinition>
+                    <RowDefinition Height="0.063*"></RowDefinition>
+                    <RowDefinition Height="27"></RowDefinition>
+                    <RowDefinition Height="0.044*"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="0.065*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="139"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" >
+                        <!-- <Button Content="Click Me" Style="{StaticResource RoundedButtonStyle}" Width="100" Height="30" /> -->
+                        <TextBlock Text="音效魔方" FontSize="60" Foreground="#FF953F" Margin="0,10,0,0"></TextBlock>
+                        <Border Height="39" BorderThickness="1" BorderBrush="#535353" Width="1" Margin="0,0,350,30"></Border>
+                        <Border Background="#3C3E42" CornerRadius="6"  HorizontalAlignment="Right" Width="110" Height="40">
+                            <Button  Foreground="white" Background="Transparent" BorderBrush="White"  BorderThickness="1" Width="110" Height="40">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Resources/icon/icon3.png" Width="14" Height="13"></Image>
+                                    <TextBlock Text="主菜单" Margin="5,0,0,0"></TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </Border>
+                    </Grid>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Button Content="导入" BorderThickness="0"   FontWeight="Bold" FontSize="16"  Width="124" Height="40"  Click="openImport"></Button>
+                        <Border Margin="18,0,0,0" CornerRadius="5" BorderThickness="1" BorderBrush="#FDE4AC" Background="#000000">
+                            <TextBox x:Name="importText"  BorderThickness="0" Background="Transparent" Width="755" Height="37"  FontSize="20" Foreground="white"></TextBox>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                        <Button Content="导出文件夹" BorderThickness="0" FontSize="16" FontWeight="Bold"  Width="124" Height="40"  Click="openExport"></Button>
+                        <Border  Margin="18,0,0,0" CornerRadius="5" BorderThickness="1" BorderBrush="#FDE4AC" Background="#000000">
+                            <TextBox x:Name="exportText" Width="528" Height="37"  BorderThickness="0"  FontSize="20" Foreground="white" Background="Transparent"></TextBox>
+                        </Border>
+                        <Border Width="137" Height="40">
+                            <ComboBox Margin="17,0,0,0" Style="{StaticResource cmbstyle}" FontSize="16" Foreground="white">
+                                <ComboBoxItem Content="MP3" IsSelected="True"></ComboBoxItem>
+                                <ComboBoxItem Content="MP32"></ComboBoxItem>
+                                <ComboBoxItem Content="MP33"></ComboBoxItem>
+                            </ComboBox>
+                        </Border>
+                        <Button   Background="#EF4444" Width="55" Height="40" Margin="16,0,0,0" HorizontalAlignment="Center" BorderThickness="0">
+                            <Image Source="/Resources/icon/search.png" Stretch="none"></Image>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1" HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="261"></ColumnDefinition>
+                        <ColumnDefinition Width="261"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Width="261" Content="预设结果" Height="50" Background="#FFCA8A" FontSize="16" FontWeight="Bold" BorderThickness="0" ></Button>
+                    <Button Grid.Column="1" Width="261" Height="50" Margin="21,0,0,0" Content="自定义调音" Background="#3E90BC" FontSize="16" FontWeight="Bold" BorderThickness="0"   Command="{Binding TiaoYinCmd}"></Button>
+                </Grid>
+                <Border Grid.Row="3" Background="#2B2B2B"  CornerRadius="15">
+                    <StackPanel Width="778" Height="251">
+                        <Grid Margin="0,15,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="140"></ColumnDefinition>
+                                <ColumnDefinition Width="17"></ColumnDefinition>
+                                <ColumnDefinition Width="140"></ColumnDefinition>
+                                <ColumnDefinition Width="17"></ColumnDefinition>
+                                <ColumnDefinition Width="140"></ColumnDefinition>
+                                <ColumnDefinition Width="17"></ColumnDefinition>
+                                <ColumnDefinition Width="140"></ColumnDefinition>
+                                <ColumnDefinition Width="17"></ColumnDefinition>
+                                <ColumnDefinition Width="140"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border  Grid.Column="0" BorderThickness="2"  CornerRadius="12" Background="#3C3E42" BorderBrush="{Binding BorderColor1 }">
+                                <Button Command="{Binding ButtonCmd1}"  BorderThickness="0" Height="100" Width="140" Background="Transparent" >
+                                    <Image Source="{Binding IconPath1}" Height="100" Width="135" Stretch="none"></Image>
+                                </Button>
+                            </Border>
+                            <Border Grid.Column="2" BorderThickness="2" CornerRadius="12" Background="#3C3E42" BorderBrush="{Binding BorderColor2 }">
+                                <Button Command="{Binding ButtonCmd2}"  BorderThickness="0" Height="100" Width="140" Background="Transparent">
+                                    <Image Source="{Binding IconPath2}" Height="100" Width="135" Stretch="none"></Image>
+                                </Button>
+                            </Border>
+                            <Border  Grid.Column="4" BorderThickness="2" CornerRadius="12" Background="#3C3E42" BorderBrush="{Binding BorderColor3 }">
+                                <Button Command="{Binding ButtonCmd3}"  BorderThickness="0" Height="100" Width="140" Background="Transparent">
+                                    <Image Source="{Binding IconPath3}" Height="100" Width="135" Stretch="none"></Image>
+                                </Button>
+                            </Border>
+                            <Border Grid.Column="6" BorderThickness="2" CornerRadius="12" Background="#3C3E42" BorderBrush="{Binding BorderColor4 }">
+                                <Button Command="{Binding ButtonCmd4}"  BorderThickness="0" Height="100" Width="140" Background="Transparent">
+                                    <Image Source="{Binding IconPath4}" Height="100" Width="135" Stretch="none"></Image>
+                                </Button>
+                            </Border>
+                            <Border  Grid.Column="8" BorderThickness="2" CornerRadius="12" Background="#3C3E42" BorderBrush="{Binding BorderColor5 }">
+                                <Button Command="{Binding ButtonCmd5}"  BorderThickness="0" Height="100" Width="140" Background="Transparent">
+                                    <Image Source="{Binding IconPath5}" Height="100" Width="135" Stretch="none"></Image>
+                                </Button>
+                            </Border>
+                        </Grid>
+                        <Grid Margin="0,15,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="140"></ColumnDefinition>
+                                <ColumnDefinition Width="17"></ColumnDefinition>
+                                <ColumnDefinition Width="140"></ColumnDefinition>
+                                <ColumnDefinition Width="17"></ColumnDefinition>
+                                <ColumnDefinition Width="140"></ColumnDefinition>
+                                <ColumnDefinition Width="17"></ColumnDefinition>
+                                <ColumnDefinition Width="140"></ColumnDefinition>
+                                <ColumnDefinition Width="17"></ColumnDefinition>
+                                <ColumnDefinition Width="140"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderThickness="2" CornerRadius="12" Background="#3C3E42" BorderBrush="{Binding BorderColor6 }">
+                                <Button Command="{Binding ButtonCmd6}"  BorderThickness="0" Height="100" Width="140" Background="Transparent">
+                                    <Image Source="{Binding IconPath6}" Height="100" Width="135" Stretch="none"></Image>
+                                </Button>
+                            </Border>
+                            <Border Grid.Column="2" BorderThickness="2" CornerRadius="12" Background="#3C3E42" BorderBrush="{Binding BorderColor7 }">
+                                <Button Command="{Binding ButtonCmd7}"  BorderThickness="0" Height="100" Width="140" Background="Transparent">
+                                    <Image Source="{Binding IconPath7}" Height="100" Width="135" Stretch="none"></Image>
+                                </Button>
+                            </Border>
+                            <Border Grid.Column="4" BorderThickness="2" CornerRadius="12" Background="#3C3E42" BorderBrush="{Binding BorderColor8 }">
+                                <Button Command="{Binding ButtonCmd8}"  BorderThickness="0" Height="100" Width="140" Background="Transparent">
+                                    <Image Source="{Binding IconPath8}" Height="100" Width="135" Stretch="none"></Image>
+                                </Button>
+                            </Border>
+                            <Border Grid.Column="6" BorderThickness="2" CornerRadius="12" Background="#3C3E42" BorderBrush="{Binding BorderColor9 }">
+                                <Button Command="{Binding ButtonCmd9}"  BorderThickness="0" Height="100" Width="140" Background="Transparent">
+                                    <Image Source="{Binding IconPath9}" Height="100" Width="135" Stretch="none"></Image>
+                                </Button>
+                            </Border>
+                            <Border Grid.Column="8" BorderThickness="2" CornerRadius="12" Background="#3C3E42" BorderBrush="{Binding BorderColor10 }">
+                                <Button Command="{Binding ButtonCmd10}"  BorderThickness="0" Height="100" Width="140" Background="Transparent">
+                                    <Image Source="{Binding IconPath10}" Width="135" Height="90" Stretch="None"></Image>
+                                </Button>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                <StackPanel Grid.Row="5" Orientation="Horizontal">
+                    <Button Content="试听以上效果" Width="182" Height="54" FontSize="20" Foreground="white" FontWeight="Bold" Background="#80E29A" BorderThickness="0" ></Button>
+                    <Button Content="原曲试听" Width="182" Height="54" Margin="50,0,0,0" FontSize="20" Foreground="white" FontWeight="Bold"  Background="#96D0FF" BorderThickness="0" ></Button>
+                    <Button Click="startDeal" Width="182" Height="54" Margin="50,0,0,0" Content="开始处理" FontSize="20" Foreground="white" FontWeight="Bold"  Background="#F97316" BorderThickness="0" ></Button>
+                    <Button Content="视频转音频" Width="182" Height="54"   Margin="50,0,0,0" FontSize="20" Foreground="white" FontWeight="Bold"  Background="#EF4444" BorderThickness="0"></Button>
+                </StackPanel>
+
+                <StackPanel Grid.Row="7" Orientation="Horizontal"  >
+                    <StackPanel Orientation="Horizontal" Width="130" >
+                        <Button  FontSize="16" Height="38" Width="130" Background="#3C3E42" BorderThickness="0" Foreground="white">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="18" Height="18" Source="/Resources/icon/icon1.png" ></Image>
+                                <TextBlock Text="保存模板" Margin="5,0,0,0"></TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="620,0,0,0"  >
+                        <Button  FontSize="16" Height="38" Width="130" Background="#3C3E42" BorderThickness="0" Foreground="white" >
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="18" Height="18" Source="/Resources/icon/icon2.png" ></Image>
+                                <TextBlock Text="保存模板" Margin="3,0,0,0"></TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="8"  x:Name="progressBarBox" Orientation="Vertical"  Margin="0,16,0,14" Grid.RowSpan="2">
+                    <StackPanel  Orientation="Horizontal" >
+                        <TextBlock x:Name="progressBarText" Text="10%" FontSize="20"  Foreground="#FDE4AC"></TextBlock>
+                        <TextBlock x:Name="dealResult" Text="正在处理" FontSize="20" Margin="345,0,0,0" Foreground="#FDE4AC"></TextBlock>
+                        <TextBlock x:Name="dealData" Text="(1/1000)" FontSize="20"  Margin="295,0,0,0" Foreground="#FDE4AC"></TextBlock>
+                    </StackPanel>
+                    <Border BorderBrush="#FFB308" BorderThickness="1"  Height="11"  Margin="0,5,0,0" CornerRadius="4">
+                        <ProgressBar x:Name="progressBar"   Value="10" Height="9"  BorderBrush="#FFB308" Background="Transparent" Foreground="#FCB90A"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </hc:TransitioningContentControl>
+</Page>

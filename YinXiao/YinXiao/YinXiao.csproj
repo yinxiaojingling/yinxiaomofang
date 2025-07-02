@@ -1,0 +1,74 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Resources\Images\新文件夹\**" />
+    <Compile Remove="Resources\新文件夹\**" />
+    <EmbeddedResource Remove="Resources\Images\新文件夹\**" />
+    <EmbeddedResource Remove="Resources\新文件夹\**" />
+    <None Remove="Resources\Images\新文件夹\**" />
+    <None Remove="Resources\新文件夹\**" />
+    <Page Remove="Resources\Images\新文件夹\**" />
+    <Page Remove="Resources\新文件夹\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\icon\icon4.png" />
+    <None Remove="Resources\icon\icon5.png" />
+    <None Remove="Resources\icon\search.png" />
+    <None Remove="Resources\Images\bg.png" />
+    <None Remove="Resources\Images\selected\yxfd.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\icon\icon1.png" />
+    <Resource Include="Resources\icon\icon2.png" />
+    <Resource Include="Resources\icon\icon3.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="HandyControl" Version="3.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\icon\icon4.png" />
+    <Resource Include="Resources\icon\icon5.png" />
+    <Resource Include="Resources\icon\search.png" />
+    <Resource Include="Resources\Images\bg.png" />
+    <Resource Include="Resources\Images\selected\yxfd.png" />
+    <Resource Include="Resources\Images\selected\sjd.png" />
+    <Resource Include="Resources\Images\selected\sdtc.png" />
+    <Resource Include="Resources\Images\selected\qwyx.png" />
+    <Resource Include="Resources\Images\selected\yzxf.png" />
+    <Resource Include="Resources\Images\selected\ygbj.png" />
+    <Resource Include="Resources\Images\selected\ylty.png" />
+    <Resource Include="Resources\Images\selected\ypdw.png" />
+    <Resource Include="Resources\Images\unselected\sjd.png" />
+    <Resource Include="Resources\Images\unselected\sdtc.png" />
+    <Resource Include="Resources\Images\unselected\qwyx.png" />
+    <Resource Include="Resources\Images\unselected\jz.png" />
+    <Resource Include="Resources\Images\unselected\yxfd.png" />
+    <Resource Include="Resources\Images\unselected\yzxf.png" />
+    <Resource Include="Resources\Images\unselected\ygbj.png" />
+    <Resource Include="Resources\Images\unselected\ylty.png" />
+    <Resource Include="Resources\Images\unselected\ypdw.png" />
+    <Resource Include="Resources\Images\unselected\gstj.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Themes\" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /E /I /Y &quot;$(ProjectDir)Resources&quot; &quot;$(TargetDir)Resources&quot;" />
+  </Target>
+
+</Project>

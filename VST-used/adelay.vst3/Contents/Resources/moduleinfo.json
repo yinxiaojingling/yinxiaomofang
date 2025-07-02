@@ -1,0 +1,56 @@
+{
+  "Name": "adelay",
+  "Version": "3.7.11.0",
+  "Factory Info": {
+    "Vendor": "Steinberg Media Technologies",
+    "URL": "http://www.steinberg.net",
+    "E-Mail": "mailto:info@steinberg.de",
+    "Flags": {
+      "Unicode": true,
+      "Classes Discardable": false,
+      "Component Non Discardable": false,
+    },
+  },
+  "Classes": [
+    {
+      "CID": "0CDBB66985D548A9BFD8371909D24BB3",
+      "Category": "Audio Module Class",
+      "Name": "ADelay",
+      "Vendor": "Steinberg Media Technologies",
+      "Version": "3.7.11.0",
+      "SDKVersion": "VST 3.7.12",
+      "Sub Categories": [
+        "Fx",
+        "Delay",
+      ],
+      "Class Flags": 1,
+      "Cardinality": 2147483647,
+      "Snapshots": [
+      ],
+    },
+    {
+      "CID": "038E7FA9629A4EAA8541B88918E8952C",
+      "Category": "Component Controller Class",
+      "Name": "ADelayController",
+      "Vendor": "Steinberg Media Technologies",
+      "Version": "3.7.11.0",
+      "SDKVersion": "VST 3.7.12",
+      "Class Flags": 0,
+      "Cardinality": 2147483647,
+      "Snapshots": [
+      ],
+    },
+    {
+      "CID": "70AA33A31AE74B24B726F784B706C080",
+      "Category": "Test Class",
+      "Name": "ADelayTest Factory",
+      "Vendor": "Steinberg Media Technologies",
+      "Version": "",
+      "SDKVersion": "",
+      "Class Flags": 0,
+      "Cardinality": 2147483647,
+      "Snapshots": [
+      ],
+    },
+  ],
+}
